@@ -1,0 +1,159 @@
+#include <Encoder.h>
+//Includes encoder library//
+
+Encoder myEnc(2, 3);
+//Pins 2 and 3 as input for Encoder//
+
+void setup() {
+//system setup information goes here//
+
+pinMode (8,OUTPUT);
+pinMode (9,OUTPUT);
+pinMode (10,OUTPUT);
+pinMode (11,OUTPUT);
+pinMode (12,OUTPUT);
+pinMode (13,OUTPUT);
+//Pin number and mode setting to output//
+
+  Serial.begin(250000);
+//Opens serial port and sets high Baud rate 250khz//
+
+  Serial.println("Custom Encoder Test:");
+//Displays this text to serial monitor//
+
+  } 
+//End of system setup information//
+
+  long oldPosition  = -999;
+//long is a big number variable, we call it oldPosition and for now it is set to -999//
+
+  void loop() {
+//system looping information goes here//
+  
+  long newPosition = myEnc.read();
+//long is a big number variable, we call this one newPosition and it is equal to the value found in my Enc.read//
+
+  if(newPosition > 59){ 
+//if position is more than 59//
+  newPosition = 0; 
+//newPosition value is reset to zero//
+  myEnc.write(newPosition); 
+//write newPosition to myEnc//
+    }
+//end of statement//
+
+  if(newPosition < 0) { 
+//if newPosition is less than zero//
+  newPosition = 59; 
+//newPosition value is reset to 59//
+  myEnc.write(newPosition); 
+//write newPosition to myEnc//
+    }
+//End of statement//
+
+ if((newPosition >=0) && (newPosition<8))  {          //and if the new position value is more than zero but less than 8 do this to the output pins
+  digitalWrite(8, HIGH);
+  digitalWrite(9, LOW);
+  digitalWrite(10, LOW); 
+  digitalWrite(11, HIGH);
+  digitalWrite(12, LOW);
+  digitalWrite(13, HIGH);
+}
+ if((newPosition >7) && (newPosition<11)) {          //and if the new position value is more than 7 but less than 11 do this to the output pins
+  digitalWrite(8, HIGH); 
+  digitalWrite(9, LOW);
+  digitalWrite(10, LOW); 
+  digitalWrite(11, LOW);
+  digitalWrite(12, LOW);
+  digitalWrite(13, HIGH);
+}
+ if((newPosition >10) && (newPosition<18)) {          //and if the new position value is more than 10 but less than 18 do this to the output pins
+  digitalWrite(8, HIGH);
+  digitalWrite(9, LOW);
+  digitalWrite(10, HIGH); 
+  digitalWrite(11, LOW);
+  digitalWrite(12, LOW);
+  digitalWrite(13, HIGH);
+}
+ if((newPosition >17) && (newPosition<21)) {          //and if the new position value is more than 17 but less than 21 do this to the output pins
+  digitalWrite(8, HIGH);
+  digitalWrite(9, LOW);
+  digitalWrite(10, HIGH); 
+  digitalWrite(11, LOW);
+  digitalWrite(12, LOW);
+  digitalWrite(13, LOW);
+}
+ if((newPosition >20) && (newPosition<28)) {          //and if the new position value is more than 20 but less than 28 do this to the output pins
+  digitalWrite(8, HIGH);
+  digitalWrite(9, LOW);
+  digitalWrite(10, HIGH); 
+  digitalWrite(11, LOW);
+  digitalWrite(12, HIGH);
+  digitalWrite(13, LOW);
+}
+ if((newPosition >27) && (newPosition<31)) {          //and if the new position value is more than 27 but less than 31 do this to the output pins
+  digitalWrite(8, LOW);
+  digitalWrite(9, LOW);
+  digitalWrite(10, HIGH); 
+  digitalWrite(11, LOW);
+  digitalWrite(12, HIGH);
+  digitalWrite(13, LOW);
+}
+ if((newPosition >30) && (newPosition<38)) {          //and if the new position value is more than 30 but less than 38 do this to the output pins
+  digitalWrite(8, LOW);
+  digitalWrite(9, HIGH);
+  digitalWrite(10, HIGH); 
+  digitalWrite(11, LOW);
+  digitalWrite(12, HIGH);
+  digitalWrite(13, LOW);
+}
+ if((newPosition >37) && (newPosition<41)) {          //and if the new position value is more than 37 but less than 41 do this to the output pins
+  digitalWrite(8, LOW);
+  digitalWrite(9, HIGH);
+  digitalWrite(10, LOW); 
+  digitalWrite(11, LOW);
+  digitalWrite(12, HIGH);
+  digitalWrite(13, LOW);
+}
+ if((newPosition >40) && (newPosition<48)) {          //and if the new position value is more than 40 but less than 48 do this to the output pins
+  digitalWrite(8, LOW);
+  digitalWrite(9, HIGH);
+  digitalWrite(10, LOW); 
+  digitalWrite(11, HIGH);
+  digitalWrite(12, HIGH);
+  digitalWrite(13, LOW);
+}
+ if((newPosition >47) && (newPosition<51)) {          //and if the new position value is more than 47 but less than 51 do this to the output pins
+  digitalWrite(8, LOW);
+  digitalWrite(9, HIGH);
+  digitalWrite(10, LOW); 
+  digitalWrite(11, HIGH);
+  digitalWrite(12, LOW);
+  digitalWrite(13, LOW);
+}
+ if((newPosition >50) && (newPosition<58)) {          //and if the new position value is more than 50 but less than 58 do this to the output pins
+  digitalWrite(8, LOW);
+  digitalWrite(9, HIGH);
+  digitalWrite(10, LOW); 
+  digitalWrite(11, HIGH);
+  digitalWrite(12, LOW);
+  digitalWrite(13, HIGH);
+}
+ if((newPosition >57) && (newPosition<60)){         //and if the new position value is more than 57 but less than 60 do this to the output pins
+  digitalWrite(8, LOW);
+  digitalWrite(9, LOW);
+  digitalWrite(10, LOW); 
+  digitalWrite(11, HIGH);
+  digitalWrite(12, LOW);
+  digitalWrite(13, HIGH);
+}
+  if (newPosition != oldPosition) {
+//If newPosition encoder value is not equal to the oldPosition value//
+    oldPosition = newPosition;
+//oldPosition value becomes equal to newPosition encoder value//
+    Serial.println(newPosition);
+//Displays newPosition value on serial monitor//
+  }
+//End of statement//
+   }
+//End of system looping information//
